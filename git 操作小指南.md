@@ -17,12 +17,10 @@ git push origin master
 
 - 分支介绍
 
-  暂时计划为两个分支，master 和 secondMaster
-
-  分别用作项目前端代码的管理
+  master用作项目前端代码的管理
 
   ```
-  git checkout master or secondMaster(切换分支)
+git checkout master or secondMaster(切换分支)
   // 切换分支后 你的工作目录下的文件 就会变化为对应分支的文件内容
   git fetch origin 
   // 获取远端代码 ，其会存储在origin/master 中
@@ -34,5 +32,5 @@ git push origin master
   git reflog 与 git reset 
   // 用来进行回滚git merge的操作
   ```
-
+  
   

@@ -26,7 +26,11 @@ git checkout master or secondMaster(切换分支)
   // 获取远端代码 ，其会存储在origin/master 中
   git merge origin/master
   // 合并远端代码分支的变化，到对应目录下面(你checkout 的哪个分支，哪个分支内容就得到了更新)
+  这样就可以合并远端的代码
+  
+  
   notice:
+  HEAD and BRANCH的理解这里不再进行赘述
   git reset 可以用来回滚commit and merge操作
   //
   git reflog 与 git reset 

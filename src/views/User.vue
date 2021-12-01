@@ -184,7 +184,9 @@ export default {
 .container {
   height: 100vh;
   width:100vw;
-  background-image: linear-gradient(to right, #a6c1ee, #fbc2eb);
+/*rgb(241, 248, 250)*/
+  background-image: linear-gradient(to right, #FFFFFF, #e1e8ea);
+  /*background-image: linear-gradient(to right, #a6c1ee, #fbc2eb);*/
 }
 .login-wrapper {
   background-color: #fff;
@@ -223,6 +225,7 @@ export default {
   padding: 10px;
   width: 100%;
   margin-top: 40px;
+  /*#f1f8fa*/
   background-image: linear-gradient(to right, #a6c1ee, #fbc2eb);
   color: #fff;
 }

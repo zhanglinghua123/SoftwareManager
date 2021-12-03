@@ -27,6 +27,7 @@
 
 <script>
 // @ is an alias to /src
+import {getAllData,getSearchData} from "@/network/Home";
 import china from "@/components/Graph/China"
 import Tabbar from "@/components/Home/Tabbar"
 import NavMenu from "@/components/Home/NavMenu";
@@ -39,6 +40,17 @@ export default {
     Tabbar,
     china,
   },
+  mounted() {
+    // 这是用来请求数据的demo
+    // 这个会获取所有的数据
+    getAllData().then(value=>{
+      console.log(value.data)
+    })
+    // 这个是条件查询的接口
+    getSearchData(undefined,"2011").then(value=>{
+      console.log(value.data)
+    })
+  }
 }
 </script>
 <style>

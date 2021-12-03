@@ -1,20 +1,21 @@
 import {request} from "@/network/request"
-export function getProvinceData(province) {
+export function getAllData(province,year) {
     return request({
-        url: '/user/list/commit',
-        method:'POST',
+        url: '/',
+        method:'GET',
         params: {
             province,
         },
         // headers: {'content-type': 'application/x-www-form-urlencoded'}
     })
 }
-export function getYearData(year) {
+export function getSearchData(province,year) {
     return request({
-        url:"",
+        url:"/search",
         method:"",
         params:{
-
+            province,
+            year
         },
     })
 

@@ -8,7 +8,7 @@
                   background-color="#f1f8fa"
                   active-text-color="#ffd04b"
         >
-          <el-submenu index="1">
+          <el-menu-item v-on:click="turnData(1)" index="1">
             <template slot="title">
               <i class="el-icon-location-outline"></i>
               企业分布
@@ -18,8 +18,8 @@
 <!--              <el-menu-item index="1-1">选项1</el-menu-item>-->
 <!--              <el-menu-item index="1-2">选项2</el-menu-item>-->
 <!--            </el-menu-item-group>-->
-          </el-submenu>
-          <el-submenu index="2">
+          </el-menu-item>
+          <el-menu-item v-on:click="turnData(2)" index="2">
             <template slot="title">
               <i class="el-icon-coin"></i>
               平均薪资</template>
@@ -28,8 +28,8 @@
 <!--              <el-menu-item index="2-1">选项1</el-menu-item>-->
 <!--              <el-menu-item index="2-2">选项2</el-menu-item>-->
 <!--            </el-menu-item-group>-->
-          </el-submenu>
-          <el-submenu index="3">
+          </el-menu-item>
+          <el-menu-item v-on:click="turnData(3)" index="3">
             <template slot="title">
               <i class="el-icon-timer"></i>
               平均工作时间
@@ -39,8 +39,8 @@
 <!--              <el-menu-item index="3-1">选项1</el-menu-item>-->
 <!--              <el-menu-item index="3-2">选项2</el-menu-item>-->
 <!--            </el-menu-item-group>-->
-          </el-submenu>
-          <el-submenu index="4">
+          </el-menu-item>
+          <el-menu-item v-on:click="turnData(4)" index="4">
             <template slot="title">
               <i class="el-icon-thumb"></i>
               发展指数
@@ -50,8 +50,8 @@
 <!--              <el-menu-item index="4-1">选项1</el-menu-item>-->
 <!--              <el-menu-item index="4-2">选项2</el-menu-item>-->
 <!--            </el-menu-item-group>-->
-          </el-submenu>
-          <el-submenu index="5">
+          </el-menu-item>
+          <el-menu-item v-on:click="turnData(5)" index="5">
             <template slot="title">
               <i class="el-icon-user"></i>
               就业人数
@@ -61,7 +61,7 @@
 <!--              <el-menu-item index="5-1">选项1</el-menu-item>-->
 <!--              <el-menu-item index="5-2">选项2</el-menu-item>-->
 <!--            </el-menu-item-group>-->
-          </el-submenu>
+          </el-menu-item>
         </el-menu>
 <!--      </el-container>-->
     </el-col>
@@ -111,6 +111,12 @@ export default {
   },
   data(){
     return {
+    }
+  },
+  methods:{
+    turnData(index){
+      console.log("我被点击了!",index)
+      this.$emit("turndata",index)
     }
   }
 }

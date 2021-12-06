@@ -10,10 +10,11 @@
 <!--        <Tabbar></Tabbar>-->
 <!--      </el-header>-->
       <el-main  id="el_main">
-        <NavMenu >
+        <NavMenu @turndata="turnTitle">
 <!--          插入的中国图表 放在这里-->
           <template v-slot:map>
-            <china></china>
+<!--            这里不能加上this哦-->
+            <china v-bind:dataarray="dataarray" v-bind:graphtitle=title></china>
 <!--          插入的图表 放在这里-->
           </template>
           <template v-slot:graph1>
@@ -40,16 +41,82 @@ export default {
     Tabbar,
     china,
   },
+  data(){
+    return {
+      title:"就业人数",
+      dataarray :[],
+      salaryarray :[],
+      enterprisearray:[],
+      emplyeearray:[]
+    }
+  },
   mounted() {
     // 这是用来请求数据的demo
     // 这个会获取所有的数据
     getAllData().then(value=>{
+      console.log(value)
+      this.$store.commit("addAllData",value.data)
       console.log(value.data)
+      let Data = value.data
+      this.salaryarray = new Array(9)
+      this.enterprisearray = new Array(9)
+      this.emplyeearray = new Array(9)
+      for(let i=0;i<9;i++)
+      {
+        this.salaryarray[i] = []
+        this.emplyeearray[i] = []
+        this.enterprisearray[i] = []
+      }
+      for(let i=0;i<9;i++)
+        for(let j=0;j<31;j++)
+        {
+          let {province,salary,year,employee,enterprise} = Data[i*31+j]
+          // console.log(province,salary,year,employee,enterprise)
+          this.salaryarray[i].push({
+            name:province,
+            value:salary
+          })
+          this.emplyeearray[i].push({
+            name:province,
+            value:employee
+          })
+          this.enterprisearray[i].push({
+            name:province,
+            value:enterprise,
+          })
+        }
+      console.log("数据为:",this.enterprisearray,this.emplyeearray,this.salaryarray)
     })
     // 这个是条件查询的接口
-    getSearchData(undefined,"2011").then(value=>{
-      console.log(value.data)
-    })
+    // getSearchData(undefined,"2011").then(value=>{
+    //   console.log(value.data)
+    // })
+  },
+  methods:{
+    turnTitle(index){
+      switch (index){
+        case 1:
+          this.title = "企业分布"
+          this.dataarray = this.enterprisearray
+          // this.dataarray =
+          break;
+        case 2:
+          this.title = "平均薪资"
+          this.dataarray = this.salaryarray
+          break;
+        case 3:
+          this.title = "平均工作时间"
+          break;
+        case 4:
+          this.title = "发展指数"
+          break;
+        case 5:
+          this.title = "就业人数"
+          this.dataarray = this.emplyeearray
+          break;
+      }
+      console.log(index,this.title)
+    }
   }
 }
 </script>

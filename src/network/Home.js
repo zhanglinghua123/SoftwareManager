@@ -1,10 +1,10 @@
 import {request} from "@/network/request"
-export function getAllData(province,year) {
+export function getAllData() {
     return request({
-        url: '/',
+        url: '/jiaran',
         method:'GET',
         params: {
-            province,
+            // province,
         },
         // headers: {'content-type': 'application/x-www-form-urlencoded'}
     })

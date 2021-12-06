@@ -71,27 +71,47 @@
           <p>互联网产业地图</p>
         </div>
         <div class="input">
-          <p>地区:</p>
-          <select>
-            <option value ="volvo">Volvo</option>
-            <option value ="saab">Saab</option>
-            <option value="opel">Opel</option>
-            <option value="audi">Audi</option>
-          </select>
-          <p>省份:</p>
-          <select>
-            <option value ="volvo">Volvo</option>
-            <option value ="saab">Saab</option>
-            <option value="opel">Opel</option>
-            <option value="audi">Audi</option>
-          </select>
-          <p>日期:</p>
-          <select>
-            <option value ="volvo">Volvo</option>
-            <option value ="saab">Saab</option>
-            <option value="opel">Opel</option>
-            <option value="audi">Audi</option>
-          </select>
+          <el-form :model="queryForm" ref="queryForm" :inline="true" >
+            <el-form-item prop="province" label="省份">
+              <el-select placeholder="省份" v-model="queryForm.province">
+                <el-option value="安徽省"></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item prop="year" label="年份">
+              <el-select placeholder="年份" v-model="queryForm.year">
+                <el-option value="2011" ></el-option>
+                <el-option value="2012" ></el-option>
+                <el-option value="2013" ></el-option>
+                <el-option value="2014" ></el-option>
+                <el-option value="2015" ></el-option>
+                <el-option value="2016" ></el-option>
+                <el-option value="2017" ></el-option>
+                <el-option value="2018" ></el-option>
+                <el-option value="2019" ></el-option>
+              </el-select>
+            </el-form-item>
+          </el-form>
+<!--          <p>地区:</p>-->
+<!--          <select>-->
+<!--            <option value ="volvo">Volvo</option>-->
+<!--            <option value ="saab">Saab</option>-->
+<!--            <option value="opel">Opel</option>-->
+<!--            <option value="audi">Audi</option>-->
+<!--          </select>-->
+<!--          <p>省份:</p>-->
+<!--          <select>-->
+<!--            <option value ="volvo">Volvo</option>-->
+<!--            <option value ="saab">Saab</option>-->
+<!--            <option value="opel">Opel</option>-->
+<!--            <option value="audi">Audi</option>-->
+<!--          </select>-->
+<!--          <p>日期:</p>-->
+<!--          <select>-->
+<!--            <option value ="volvo">Volvo</option>-->
+<!--            <option value ="saab">Saab</option>-->
+<!--            <option value="opel">Opel</option>-->
+<!--            <option value="audi">Audi</option>-->
+<!--          </select>-->
         </div>
         <slot name="map"></slot>
         <div class="title">
@@ -111,6 +131,10 @@ export default {
   },
   data(){
     return {
+      queryForm:{
+        province:'',
+        year: 0
+      }
     }
   }
 }

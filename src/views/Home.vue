@@ -1,38 +1,40 @@
 <template>
   <div class="home">
-      <div class="head">
-        <p style="margin-left: calc(10vw + 40px)">产业地图</p>
-        <p>全面分析</p>
-        <p>数据展示</p>
-        <p class="rightItem">Github地址</p>
-      </div>
-<!--      <el-header height="100px" :style="{padding:0}">-->
-<!--        <Tabbar></Tabbar>-->
-<!--      </el-header>-->
-      <el-main  id="el_main">
-        <NavMenu @turndata="turnTitle">
-<!--          插入的中国图表 放在这里-->
-          <template v-slot:map>
-<!--            这里不能加上this哦-->
-            <china v-bind:dataarray="dataarray" v-bind:graphtitle=title></china>
-<!--          插入的图表 放在这里-->
-          </template>
-          <template v-slot:graph1>
-<!--            <china></china>-->
-            <tab-gragh></tab-gragh>
-          </template>
-        </NavMenu>
-      </el-main>
+    <div class="head">
+      <p style="margin-left: calc(10vw + 40px)">产业地图</p>
+      <p>全面分析</p>
+      <p>数据展示</p>
+      <p class="rightItem">Github地址</p>
+    </div>
+    <!--      <el-header height="100px" :style="{padding:0}">-->
+    <!--        <Tabbar></Tabbar>-->
+    <!--      </el-header>-->
+    <el-main id="el_main">
+      <NavMenu @turndata="turnTitle">
+        <!--          插入的中国图表 放在这里-->
+        <template v-slot:map>
+          <!--            这里不能加上this哦-->
+          <china v-bind:dataarray="dataarray" v-bind:graphtitle=title></china>
+          <!--          插入的图表 放在这里-->
+        </template>
+        <template v-slot:graph1>
+          <!--            <china></china>-->
+          <tab-gragh v-bind:dataarray="dataarray" v-bind:graphtitle=title></tab-gragh>
+        </template>
+      </NavMenu>
+    </el-main>
+    <div class="tail"></div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import {getAllData,getSearchData} from "@/network/Home";
+import {getAllData, getSearchData} from "@/network/Home";
 import china from "@/components/Graph/China"
 import Tabbar from "@/components/Home/Tabbar"
 import NavMenu from "@/components/Home/NavMenu";
 import tabGragh from "@/components/Graph/tabGragh";
+
 export default {
   name: 'Home',
   components: {
@@ -41,60 +43,54 @@ export default {
     Tabbar,
     china,
   },
-  data(){
+  data() {
     return {
-      title:"就业人数",
-      dataarray :[],
-      salaryarray :[],
-      enterprisearray:[],
-      emplyeearray:[]
+      title: "就业人数",
+      dataarray: [],
+      salaryarray: [],
+      enterprisearray: [],
+      emplyeearray: []
     }
   },
   mounted() {
     // 这是用来请求数据的demo
     // 这个会获取所有的数据
-    getAllData().then(value=>{
+    getAllData().then(value => {
       console.log(value)
-      this.$store.commit("addAllData",value.data)
+      this.$store.commit("addAllData", value.data)
       console.log(value.data)
       let Data = value.data
       this.salaryarray = new Array(9)
       this.enterprisearray = new Array(9)
       this.emplyeearray = new Array(9)
-      for(let i=0;i<9;i++)
-      {
+      for (let i = 0; i < 9; i++) {
         this.salaryarray[i] = []
         this.emplyeearray[i] = []
         this.enterprisearray[i] = []
       }
-      for(let i=0;i<9;i++)
-        for(let j=0;j<31;j++)
-        {
-          let {province,salary,year,employee,enterprise} = Data[i*31+j]
+      for (let i = 0; i < 9; i++)
+        for (let j = 0; j < 31; j++) {
+          let {province, salary, year, employee, enterprise} = Data[i * 31 + j]
           // console.log(province,salary,year,employee,enterprise)
           this.salaryarray[i].push({
-            name:province,
-            value:salary
+            name: province,
+            value: salary
           })
           this.emplyeearray[i].push({
-            name:province,
-            value:employee
+            name: province,
+            value: employee
           })
           this.enterprisearray[i].push({
-            name:province,
-            value:enterprise,
+            name: province,
+            value: enterprise,
           })
         }
-      console.log("数据为:",this.enterprisearray,this.emplyeearray,this.salaryarray)
+      console.log("数据为:", this.enterprisearray, this.emplyeearray, this.salaryarray)
     })
-    // 这个是条件查询的接口
-    // getSearchData(undefined,"2011").then(value=>{
-    //   console.log(value.data)
-    // })
   },
-  methods:{
-    turnTitle(index){
-      switch (index){
+  methods: {
+    turnTitle(index) {
+      switch (index) {
         case 1:
           this.title = "企业分布"
           this.dataarray = this.enterprisearray
@@ -114,39 +110,100 @@ export default {
           this.title = "就业人数"
           this.dataarray = this.emplyeearray
           break;
+        case 7:
+          this.title = "城市宽带接入用户数";
+          break;
+        case 8:
+          this.title = "农村宽带接入用户数";
+          break;
+        case 9:
+          this.title = "互联网宽带接入用户数";
+          break;
+        case 10:
+          this.title = "互联网宽带接入端口数";
+          break;
+        case 12:
+          this.title = "网页数";
+          break;
+        case 13:
+          this.title = "网站数";
+          break;
+        case 14:
+          this.title = "域名数";
+          break;
+        case 15:
+          this.title = "企业拥有网站数";
+          break;
+        case 16:
+          this.title = "每百家企业拥有网站数";
+          break;
+        case 18:
+          this.title = "嵌入式系统软件收入";
+          break;
+        case 19:
+          this.title = "软件产品收入";
+          break;
+        case 20:
+          this.title = "软件业务收入";
+          break;
+        case 21:
+          this.title = "信息技术服务收入";
+          break;
+        case 22:
+          this.title = "互联网网民数";
+          break;
+        case 23:
+          this.title = "期末使用计算机数";
+          break;
+        case 24:
+          this.title = "每百人使用计算机数";
+          break;
       }
-      console.log(index,this.title)
+      console.log(index, this.title)
     }
   }
 }
 </script>
 <style>
-.head{
-  display:flex;
+.head {
+  display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  width:100vw;
-  height:70px;
-  background: rgba(0,0,0,0.8);
+  width: 100vw;
+  height: 70px;
+  background: rgba(0, 0, 0, 0.8);
   /*padding-left: 10vw;*/
 }
-.home{
-  height:100vh;
+
+.home {
+  height: 100vh;
+  margin-right: 0;
   /*margin-left: 5vw;*/
   /*margin-right:5vw;*/
 }
-p{
+
+p {
   font-size: 20px;
-  height:100%;
-  line-height:100%;
-  margin-right:30px;
-  color:white;
+  height: 100%;
+  line-height: 100%;
+  margin-right: 30px;
+  color: white;
 }
-.rightItem{
+
+.rightItem {
   margin-left: 50vw;
 }
-#el_main{
+
+#el_main {
   margin-left: 10vw;
   margin-right: 10vw;
+  padding: 0;
 }
+
+.tail{
+  display: flex;
+  background-color: black;
+  height: 20vh;
+}
+
 </style>

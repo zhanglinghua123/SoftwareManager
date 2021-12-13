@@ -18,5 +18,22 @@ export function getSearchData(province,year) {
             year
         },
     })
+}
+export function getAllProvince(){
+    return request({
+        url:"/select_province",
+        method: "GET",
+        params:{
+        }
+    })
+}
 
+export function getProvinceData(province){
+    return request({
+        url: '/huahua',
+        method: 'GET',
+        params:{
+            province
+        }
+    })
 }

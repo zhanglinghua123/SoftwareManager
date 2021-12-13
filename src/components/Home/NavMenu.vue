@@ -6,7 +6,7 @@
         <el-menu  default-active="2"
                   class="el-menu-vertical-demo"
                   background-color="#f1f8fa"
-                  active-text-color="#ffd04b"
+                  active-text-color="#00BFFF"
         >
           <el-menu-item v-on:click="turnData(1)" index="1">
             <template slot="title">
@@ -38,17 +38,6 @@
 <!--              <template slot="title">分组一</template>-->
 <!--              <el-menu-item index="3-1">选项1</el-menu-item>-->
 <!--              <el-menu-item index="3-2">选项2</el-menu-item>-->
-<!--            </el-menu-item-group>-->
-          </el-menu-item>
-          <el-menu-item v-on:click="turnData(4)" index="4">
-            <template slot="title">
-              <i class="el-icon-thumb"></i>
-              发展指数
-            </template>
-<!--            <el-menu-item-group>-->
-<!--              <template slot="title">分组一</template>-->
-<!--              <el-menu-item index="4-1">选项1</el-menu-item>-->
-<!--              <el-menu-item index="4-2">选项2</el-menu-item>-->
 <!--            </el-menu-item-group>-->
           </el-menu-item>
           <el-menu-item v-on:click="turnData(5)" index="5">

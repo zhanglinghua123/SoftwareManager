@@ -54,7 +54,7 @@
 </template>
 
 <script>
-// import {Signup,Signin} from "@/Network/Sign";
+import {signIn,signUp} from "@/network/User";
 export default {
   name: "User",
   data(){
@@ -85,9 +85,9 @@ export default {
         })
       }
       else
-        Signin(this.useName,this.usePassword).then(value=>{
+        signIn(this.useName,this.usePassword).then(value=>{
           console.log(value.data)
-          if(value.data.length == 0)
+          if(value.data == false)
             this.$message({
               showClose: true,
               message: '登录失败,请重新进行输入',
@@ -95,14 +95,13 @@ export default {
             })
           else
           {
-            console.log(value.data.token);
-            localStorage.setItem("token", value.data.token);
+            // console.log(value.data.token);
+            // localStorage.setItem("token", value.data.token);
             this.$message({
               showClose: true,
               message: '登录成功!',
               type: 'success'
             })
-            this.$store.commit("changeUserName",this.useName)
             this.$router.push("/Home");
           }
         }).catch(error=>{
@@ -125,7 +124,7 @@ export default {
           type:'error'
         })
       else
-        Signup(this.form).then(value=>{
+        signUp(this.form).then(value=>{
           this.$message({
             showClose: true,
             message: '注册成功!',
@@ -227,7 +226,11 @@ export default {
   margin-top: 40px;
   /*#f1f8fa*/
   background-image: linear-gradient(to right, #a6c1ee, #fbc2eb);
-  color: #fff;
+  #color: #fff;
+}
+p{
+  color: #ff4d51;
+  font-size: 16px;
 }
 .msg {
   text-align: center;

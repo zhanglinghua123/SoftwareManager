@@ -1,19 +1,26 @@
 import {request} from "@/network/request"
 export function signIn(name,password) {
     return request({
-        url: '/user/list/commit',
-        method:'POST',
+        url: '/signin',
+        method:'GET',
         params: {
-            province,
+            name,
+            password
         },
         // headers: {'content-type': 'application/x-www-form-urlencoded'}
     })
 }
-export function signUp(name,password,email) {
+export function signUp(form) {
+    let name = form.name;
+    let password = form.password;
+    let email = form.email;
     return request({
-        url:"",
-        method:"",
+        url:"/signup",
+        method:"POST",
         params:{
+            name,
+            password,
+            email
         },
     })
 

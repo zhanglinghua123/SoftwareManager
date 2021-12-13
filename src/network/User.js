@@ -4,7 +4,7 @@ export function signIn(name,password) {
         url: '/user/list/commit',
         method:'POST',
         params: {
-            province,
+            name, password
         },
         // headers: {'content-type': 'application/x-www-form-urlencoded'}
     })

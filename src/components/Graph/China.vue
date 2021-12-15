@@ -2,18 +2,39 @@
   <div class="china">
     <div ref="mapBax" style="height:600px;width:100%">
     </div>
+    <el-dialog title="收货地址" :visible.sync="dialogTableVisible">
+      <el-table :data="gridData.slice((currentPage-1)*pageSize,currentPage*pageSize)">
+        <el-table-column property="company" label="公司" width="150"></el-table-column>
+        <el-table-column property="province" label="工作地点" width="150"></el-table-column>
+        <el-table-column property="department" label="职位" width="100"></el-table-column>
+        <el-table-column property="gotowork" label="上班时间"  width="100"></el-table-column>
+        <el-table-column property="getoffwork" label="上班时间"  width="100"></el-table-column>
+        <el-table-column property="workday" label="工作时间"  width="100"></el-table-column>
+      </el-table>
+      <div class="block">
+        <el-pagination
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+            :current-page="currentPage"
+            :page-sizes="[1, 3, 5, 8]"
+            :page-size="pageSize"
+            layout="total, sizes, prev, pager, next, jumper"
+            :total="totalNum">
+        </el-pagination>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
 <script>
 import '@/assets/js/China.js'
+import {getWorkData} from "../../JS/China";
 
 // 该函数是用来更新Echarts 中国图表数据的函数
 function createCharts(_this) {
   let graphTitle = _this.graphtitle;
   let dataArray = _this.dataarray
-  console.log(graphTitle, dataArray[0])
-  _this.chart = _this.$echarts.init(_this.$refs.mapBax);
+  // console.log(graphTitle, dataArray[0])
   _this.chart.setOption({
     baseOption: {
       timeline: {
@@ -28,14 +49,13 @@ function createCharts(_this) {
         max: 'dataMax'
       },
       yAxis: {
-        // offset:300,
         type: 'category',
-        // data: ["河南","浙江"],
         axisLabel: {
           interval: 0,
-          formatter: function (value, index) {
+          formatter: function (value) {
             let namearray = ["安徽", "北京", "重庆", "福建", "甘肃", "广东", "广西", "贵州", "海南", "河北", "河南", "黑龙江", "湖北", "湖南", "吉林", "江苏", "江西", "辽宁", "内蒙古", "宁夏", "青海", "山东", "山西", "陕西", "上海", "四川"
               , "天津", "西藏", "新疆", "云南", "浙江"]
+            // console.log(value)
             return namearray[value]
           },
         },
@@ -160,7 +180,7 @@ function createCharts(_this) {
           },
           {
             realtimeSort: true,
-            name: 'X',
+            name: graphTitle,
             type: 'bar',
             data: dataArray[1],
             label: {
@@ -186,7 +206,7 @@ function createCharts(_this) {
           },
           {
             realtimeSort: true,
-            name: 'X',
+            name: graphTitle,
             type: 'bar',
             data: dataArray[2],
             label: {
@@ -211,7 +231,7 @@ function createCharts(_this) {
           },
           {
             realtimeSort: true,
-            name: 'X',
+            name: graphTitle,
             type: 'bar',
             data: dataArray[3],
             label: {
@@ -236,7 +256,7 @@ function createCharts(_this) {
           },
           {
             realtimeSort: true,
-            name: 'X',
+            name: graphTitle,
             type: 'bar',
             data: dataArray[4],
             label: {
@@ -261,7 +281,7 @@ function createCharts(_this) {
           },
           {
             realtimeSort: true,
-            name: 'X',
+            name: graphTitle,
             type: 'bar',
             data: dataArray[5],
             label: {
@@ -286,7 +306,7 @@ function createCharts(_this) {
           },
           {
             realtimeSort: true,
-            name: 'X',
+            name: graphTitle,
             type: 'bar',
             data: dataArray[6],
             label: {
@@ -311,7 +331,7 @@ function createCharts(_this) {
           },
           {
             realtimeSort: true,
-            name: 'X',
+            name: graphTitle,
             type: 'bar',
             data: dataArray[7],
             label: {
@@ -336,7 +356,7 @@ function createCharts(_this) {
           },
           {
             realtimeSort: true,
-            name: 'X',
+            name: graphTitle,
             type: 'bar',
             data: dataArray[8],
             label: {
@@ -348,6 +368,7 @@ function createCharts(_this) {
         ]
       },]
   }, true);
+  console.log(_this.chart)
   window.onresize = function () {
     _this.chart.resize();
   };
@@ -357,8 +378,16 @@ export default {
   name: "China",
   data() {
     return {
-      chart: undefined
+      currentPage: 1,//默认显示第一页
+      pageSize:1,//默认每页显示10条
+      totalNum: null, //总页数
+      dialogTableVisible:false,
+      chart: undefined,
+      gridData: [],
     }
+  },
+  created(){
+    this.totalNum=this.gridData.length;
   },
   watch: {
     graphtitle(n, o) { //n为新值,o为旧值
@@ -390,7 +419,36 @@ export default {
   },
   mounted() {
     console.log("create")
+    this.chart = this.$echarts.init(this.$refs.mapBax);
     createCharts(this)
+    console.log(this.chart)
+    let turnTable = this.turnTable;
+    let grapgTitle = this.returnTitle;
+    this.chart.on("click",function (params) {
+      console.log(params.name);
+      if(grapgTitle() == "平均工作时间")
+      turnTable(params.name)
+    })
+  },
+  methods:{
+    async turnTable(province){
+      this.gridData = await getWorkData(province);
+      console.log(this.gridData)
+      this.dialogTableVisible = true;
+      this.totalNum = this.gridData.length;
+    },
+    handleSizeChange(val) {
+      console.log(`每页 ${val} 条`);
+      this.pageSize = val;    //动态改变
+    },
+    handleCurrentChange(val) {
+      console.log(`当前页: ${val}`);
+      this.currentPage = val;    //动态改变
+    },
+    returnTitle()
+    {
+      return this.graphtitle
+    }
   }
 }
 </script>

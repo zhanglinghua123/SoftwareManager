@@ -4,12 +4,7 @@ export function signIn(name,password) {
         url: '/signin',
         method:'GET',
         params: {
-<<<<<<< HEAD
-            name,
-            password
-=======
             name, password
->>>>>>> origin/main
         },
         // headers: {'content-type': 'application/x-www-form-urlencoded'}
     })

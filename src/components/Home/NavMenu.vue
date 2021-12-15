@@ -1,15 +1,6 @@
 <template>
   <el-row class="first">
     <el-col :span="5" class="el-menu">
-<<<<<<< HEAD
-<!--      <el-container>-->
-        <el-menu  default-active="2"
-                  class="el-menu-vertical-demo"
-                  background-color="#f1f8fa"
-                  active-text-color="#00BFFF"
-        >
-          <el-menu-item v-on:click="turnData(1)" index="1">
-=======
       <el-menu default-active="5"
                class="el-menu-vertical-demo"
                background-color="#f1f8fa"
@@ -105,7 +96,6 @@
             </template>
           </el-menu-item>
           <el-menu-item v-on:click="turnData(13)" index="13">
->>>>>>> origin/main
             <template slot="title">
               <i class="el-icon-location-outline"></i>
               网站数
@@ -147,9 +137,7 @@
               软件产品收入
             </template>
           </el-menu-item>
-<<<<<<< HEAD
-          <el-menu-item v-on:click="turnData(5)" index="5">
-=======
+
           <el-menu-item v-on:click="turnData(20)" index="20">
             <template slot="title">
               <i class="el-icon-s-management"></i>
@@ -157,7 +145,7 @@
             </template>
           </el-menu-item>
           <el-menu-item v-on:click="turnData(21)" index="21">
->>>>>>> origin/main
+<!--&gt;>>>>>> origin/main-->
             <template slot="title">
               <i class="el-icon-guide"></i>
               信息技术服务收入
@@ -195,15 +183,15 @@ export default {
     }
   },
   mounted() {
-    getAllProvince().then(value => {
-      var tmp = {value: 0, province: ""};
-      for (var i = 0; i < value.data.length; i++) {
-        tmp["value"] = i + 1;
-        tmp["province"] = value.data[i];
-        console.log("查询数据");
-        console.log(tmp);
-      }
-    })
+    // getAllProvince().then(value => {
+    //   var tmp = {value: 0, province: ""};
+    //   for (var i = 0; i < value.data.length; i++) {
+    //     tmp["value"] = i + 1;
+    //     tmp["province"] = value.data[i];
+    //     console.log("查询数据");
+    //     console.log(tmp);
+    //   }
+    // })
   },
   methods: {
     turnData(index) {

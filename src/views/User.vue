@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import {signIn,signUp} from "@/network/User";
+import {signIn,signUp} from "../network/User";
 export default {
   name: "User",
   data(){
@@ -102,7 +102,7 @@ export default {
               message: '登录成功!',
               type: 'success'
             })
-            this.$router.push("/Home");
+            this.$router.push("/World");
           }
         }).catch(error=>{
               console.log(error);
@@ -125,17 +125,18 @@ export default {
         })
       else
         signUp(this.form).then(value=>{
+          if(value.data == "插入成功！")
           this.$message({
             showClose: true,
             message: '注册成功!',
             type: 'success'
           })
+          else
+          {
+            this.$message.error("用户名字重复!")
+          }
         }).catch(error=>{
-          this.$message({
-            showClose: true,
-            message: '注册失败,用户信息重复',
-            type: 'error'
-          })
+          this.$message.error("注册失败!")
         })
     },
     signUp1(){

@@ -11,7 +11,7 @@
         <!--          插入的中国图表 放在这里-->
         <template v-slot:map>
           <!--            这里不能加上this哦-->
-          <china v-bind:dataarray="dataarray" v-bind:graphtitle=title ></china>
+          <russian v-bind:dataarray="dataarray" v-bind:graphtitle=title ></russian>
           <!--          插入的图表 放在这里-->
         </template>
         <template v-slot:graph1>
@@ -24,26 +24,23 @@
   </div>
 </template>
 
+<!--这个组件是负责俄罗斯的数据-->
 <script>
 // @ is an alias to /src
 import * as Home from "../network/Home";
-import china from "@/components/Graph/China"
-import Tabbar from "@/components/Home/Tabbar"
-import NavMenu from "@/components/Home/NavMenu";
+import Tabbar from "@/components/Home1/Tabbar"
+import NavMenu from "@/components/Home1/NavMenu";
 import tabGragh from "@/components/Graph/tabGragh";
-import Amercian from "../components/Graph/Amercian";
 import Russian from "../components/Graph/Russian";
 // import turnAllDataForm from "../JS/turnDataForm";
 
 export default {
-  name: 'Home',
+  name: 'Home1',
   components: {
     Russian,
-    Amercian,
     tabGragh,
     NavMenu,
     Tabbar,
-    china,
   },
   data() {
     return {

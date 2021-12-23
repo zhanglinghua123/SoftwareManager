@@ -123,34 +123,34 @@ export default {
               name:"United States",
               value:100,
             },
-            {
-              name:"Australia",
-              value:100,
-            },
+            // {
+            //   name:"Australia",
+            //   value:100,
+            // },
             {
               name:"Japan",
               value:100,
             },
-            {
-              name:"Canada",
-              value:100,
-            },
-            {
-              name:"Brazil",
-              value:100,
-            },
-            {
-              name:"French",
-              value:100,
-            },
+            // {
+            //   name:"Canada",
+            //   value:100,
+            // },
+            // {
+            //   name:"Brazil",
+            //   value:100,
+            // },
+            // {
+            //   name:"French",
+            //   value:100,
+            // },
             {
               name:"United Kingdom",
               value:100,
             },
-            {
-              name:"Germany",
-              value:100,
-            }
+            // {
+            //   name:"Germany",
+            //   value:100,
+            // }
           ]
         },
       ],
@@ -165,8 +165,15 @@ export default {
   methods:{
     turnToMap(province)
     {
+      console.log(province);
       if(province == "China")
         this.$router.push("/home")
+      if(province == "Russia")
+        this.$router.push("/home1")
+      if(province == "United Kingdom")
+        this.$router.push("/home2")
+      if(province == "United States")
+        this.$router.push("/home3")
     }
   }
 }

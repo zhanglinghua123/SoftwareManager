@@ -28,7 +28,7 @@
 // @ is an alias to /src
 import * as Home from "../network/Home";
 import china from "@/components/Graph/China"
-import Tabbar from "@/components/Home/Tabbar"
+// import Tabbar from "@/components/Home/Tabbar"
 import NavMenu from "@/components/Home/NavMenu";
 import tabGragh from "@/components/Graph/tabGragh";
 import Amercian from "../components/Graph/Amercian";
@@ -42,7 +42,7 @@ export default {
     Amercian,
     tabGragh,
     NavMenu,
-    Tabbar,
+    // Tabbar,
     china,
   },
   data() {

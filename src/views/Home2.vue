@@ -27,7 +27,7 @@
 <script>
 // @ is an alias to /src
 import * as Home from "../network/Home";
-import Tabbar from "@/components/Home2/Tabbar"
+// import Tabbar from "@/components/Home2/Tabbar"
 import NavMenu from "@/components/Home2/NavMenu";
 import tabGragh from "@/components/Graph/tabGragh";
 import UK from "@/components/Graph/UK"
@@ -39,7 +39,7 @@ export default {
     UK,
     tabGragh,
     NavMenu,
-    Tabbar,
+    // Tabbar,
   },
   data() {
     return {

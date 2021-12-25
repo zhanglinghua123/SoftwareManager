@@ -28,13 +28,13 @@
 
 <script>
 import '@/assets/js/UK.js'
-
+let chart = undefined;
 // 该函数是用来更新Echarts 中国图表数据的函数
 function createCharts(_this) {
   let graphTitle = _this.graphtitle;
   let dataArray = _this.dataarray
   // console.log(graphTitle, dataArray[0])
-  _this.chart.setOption({
+  chart.setOption({
     baseOption: {
       timeline: {
         left: "5%",
@@ -42,7 +42,7 @@ function createCharts(_this) {
         show: true,
         autoPlay: true,
         playInterval: 2000,
-        data: ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019']
+        data: ['2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019','2020']
       },
       xAxis: {
         max: 'dataMax'
@@ -52,8 +52,12 @@ function createCharts(_this) {
         axisLabel: {
           interval: 0,
           formatter: function (value) {
-            let namearray = ["安徽", "北京", "重庆", "福建", "甘肃", "广东", "广西", "贵州", "海南", "河北", "河南", "黑龙江", "湖北", "湖南", "吉林", "江苏", "江西", "辽宁", "内蒙古", "宁夏", "青海", "山东", "山西", "陕西", "上海", "四川"
-              , "天津", "西藏", "新疆", "云南", "浙江"]
+            let namearray = [
+              "Scotland",
+              "Wales",
+              "England",
+              "Northern Ireland"
+            ]
             // console.log(value)
             return namearray[value]
           },
@@ -65,7 +69,7 @@ function createCharts(_this) {
         // max: 2 // only the largest 3 bars will be displayed
       },
       grid: {
-        left: '68%',
+        left: '58%',
         right: '5%',
         bottom: '10%',
         containLabel: true
@@ -104,7 +108,7 @@ function createCharts(_this) {
         // left:'10%',
         // top:"10%",
         layoutCenter: ['35%', '50%'],
-        layoutSize: 600,
+        layoutSize: 500,
         label: {
           normal: {
             show: true, // 是否显示对应地名（是否显示标签）
@@ -149,35 +153,10 @@ function createCharts(_this) {
             geoIndex: 0,
             // data:dataArray[0]
             // data:dataArray[0]
-            data: dataArray[0]
-          },
-          {
-            realtimeSort: true,
-            name: graphTitle,
-            type: 'bar',
-            data: dataArray[0],
-            label: {
-              show: true,
-              position: 'right',
-              valueAnimation: true
-            }
-          }
-        ]
-      },
-      {
-        series: [
-          {
-            name: graphTitle, // 浮动框的标题
-            type: "map",// 地图配合展示 信息
-            geoIndex: 0,
             data: dataArray[1]
           },
           {
-            type: "scatter",//geo 表达的是 地理坐标系
-            // 此处表达的是 在地理坐标系上的图表
-            coordinateSystem: "geo", // 对应上方配置
-          },
-          {
+            color:"#7DF30D",
             realtimeSort: true,
             name: graphTitle,
             type: 'bar',
@@ -193,15 +172,15 @@ function createCharts(_this) {
       {
         series: [
           {
-            type: "scatter",//geo 表达的是 地理坐标系
-            // 此处表达的是 在地理坐标系上的图表
-            coordinateSystem: "geo", // 对应上方配置
-          },
-          {
             name: graphTitle, // 浮动框的标题
             type: "map",// 地图配合展示 信息
             geoIndex: 0,
             data: dataArray[2]
+          },
+          {
+            type: "scatter",//geo 表达的是 地理坐标系
+            // 此处表达的是 在地理坐标系上的图表
+            coordinateSystem: "geo", // 对应上方配置
           },
           {
             realtimeSort: true,
@@ -215,7 +194,8 @@ function createCharts(_this) {
             }
           }
         ]
-      }, {
+      },
+      {
         series: [
           {
             type: "scatter",//geo 表达的是 地理坐标系
@@ -365,11 +345,35 @@ function createCharts(_this) {
             }
           }
         ]
+      }, {
+        series: [
+          {
+            type: "scatter",//geo 表达的是 地理坐标系
+            // 此处表达的是 在地理坐标系上的图表
+            coordinateSystem: "geo", // 对应上方配置
+          },
+          {
+            name: graphTitle, // 浮动框的标题
+            type: "map",// 地图配合展示 信息
+            geoIndex: 0,
+            data: dataArray[9]
+          },
+          {
+            realtimeSort: true,
+            name: graphTitle,
+            type: 'bar',
+            data: dataArray[9],
+            label: {
+              show: true,
+              position: 'right',
+              valueAnimation: true
+            }
+          }
+        ]
       },]
   }, true);
-  console.log(_this.chart)
   window.onresize = function () {
-    _this.chart.resize();
+    chart.resize();
   };
 }
 
@@ -381,7 +385,6 @@ export default {
       pageSize:1,//默认每页显示10条
       totalNum: null, //总页数
       dialogTableVisible:false,
-      chart: undefined,
       gridData: [],
     }
   },
@@ -391,7 +394,7 @@ export default {
   watch: {
     graphtitle(n, o) { //n为新值,o为旧值
       this.graphtitle = n;
-      this.chart.setOption({
+      chart.setOption({
         title: {
           text: this.graphtitle
         },
@@ -418,7 +421,7 @@ export default {
   },
   mounted() {
     console.log("create")
-    this.chart = this.$echarts.init(this.$refs.mapBax);
+    chart = this.$echarts.init(this.$refs.mapBax);
     createCharts(this)
     console.log(this.chart)
   },

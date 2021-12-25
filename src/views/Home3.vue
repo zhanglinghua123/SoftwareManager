@@ -26,14 +26,12 @@
 <!--这个负责美国的数据-->
 <script>
 // @ is an alias to /src
-import * as Home from "../network/Home";
+import * as Home3 from "../network/Home3";
 import china from "@/components/Graph/China"
-// import Tabbar from "@/components/Home3/Tabbar"
 import NavMenu from "@/components/Home3/NavMenu";
 import tabGragh from "@/components/Graph/tabGragh";
 import American from "../components/Graph/Amercian";
 // import turnAllDataForm from "../JS/turnDataForm";
-
 export default {
   name: 'Home3',
   components: {
@@ -56,133 +54,31 @@ export default {
     turnTitle(index) {
       switch (index) {
         case 1:
-          this.title = "企业分布"
-          Home.getalljiaran1().then(value=>{
+          this.title = "就业人数"
+          Home3.getall001().then(value=>{
             console.log(value.data)
             this.dataarray = value.data;
+            console.log(value.data[1].map((value)=>{
+              return value.name;
+            }))
           })
           break;
         case 2:
-          this.title = "平均薪资"
-          Home.getalljiaran3().then(value=>{
+          this.title = "平均工资"
+          Home3.getall002().then(value=>{
             this.dataarray = value.data;
           })
           break;
         case 3:
-          this.title = "平均工作时间"
-          this.dataarray = []
+          this.title = "税收"
+          Home3.getall003().then(value=>{
+            this.dataarray = value.data;
+          })
           break;
         case 4:
-          this.title = "发展指数"
-          Home.getall009().then(value=>{
-            this.dataarray = value.data
-          })
-          break;
-        case 5:
-          this.title = "就业人数"
-          Home.getalljiaran2().then(value=>{
+          this.title = "各行业GDP"
+          Home3.getall004().then(value=>{
             this.dataarray = value.data;
-          })
-          break;
-        case 7:
-          this.title = "城市宽带接入用户数";
-          Home.getall001().then(value=>{
-            console.log(value.data)
-            this.dataarray = value.data
-            // this.dataarray = turnAllDataForm(value.data)
-          })
-          break;
-        case 8:
-          this.title = "农村宽带接入用户数";
-          Home.getall007().then(value=>{
-            console.log(value.data)
-            this.dataarray = value.data
-            // this.dataarray = turnAllDataForm(value.data)
-          })
-          break;
-        case 9:
-          this.title = "互联网宽带接入用户数";
-          Home.getall003().then(value=>{
-            this.dataarray = value.data
-          })
-          break;
-        case 10:
-          this.title = "互联网宽带接入端口数";
-          Home.getall002().then(value=>{
-            this.dataarray = value.data
-          })
-          break;
-        case 12:
-          this.title = "网页数";
-          Home.getall014().then(value=>{
-            this.dataarray = value.data
-          })
-          break;
-        case 13:
-          this.title = "网站数";
-          Home.getall015().then(value=>{
-            this.dataarray = value.data
-          })
-          break;
-        case 14:
-          this.title = "域名数";
-          Home.getall017().then(value=>{
-            this.dataarray = value.data
-          })
-          break;
-        case 15:
-          this.title = "企业拥有网站数";
-          Home.getall010().then(value=>{
-            this.dataarray = value.data
-          })
-          break;
-        case 16:
-          this.title = "每百家企业拥有网站数";
-          Home.getall005().then(value=>{
-            this.dataarray = value.data
-          })
-          break;
-        case 18:
-          this.title = "嵌入式系统软件收入";
-          Home.getall011().then(value=>{
-            this.dataarray = value.data
-          })
-          break;
-        case 19:
-          this.title = "软件产品收入";
-          Home.getall012().then(value=>{
-            this.dataarray = value.data
-          })
-          break;
-        case 20:
-          this.title = "软件业务收入";
-          Home.getall013().then(value=>{
-            this.dataarray = value.data
-          })
-          break;
-        case 21:
-          this.title = "信息技术服务收入";
-          Home.getall016().then(value=>{
-            this.dataarray = value.data;
-          })
-          break;
-        case 22:
-          this.title = "互联网网民数";
-          console.log("我被点击了")
-          Home.getall004().then(value=>{
-            this.dataarray = value.data
-          })
-          break;
-        case 23:
-          this.title = "期末使用计算机数";
-          Home.getall008().then(value=>{
-            this.dataarray = value.data
-          })
-          break;
-        case 24:
-          this.title = "每百人使用计算机数";
-          Home.getall006().then(value=>{
-            this.dataarray = value.data
           })
           break;
       }

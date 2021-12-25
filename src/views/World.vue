@@ -6,10 +6,11 @@
 <script>
 import '@/assets/js/world.js'
 // import echarts from 'echarts'
+let chart =undefined;
 export default {
   name:"World",
   mounted () {
-    let chart = this.$echarts.init(document.getElementById('chart'))
+    chart = this.$echarts.init(document.getElementById('chart'))
     // 监听屏幕变化自动缩放图表
     window.addEventListener('resize', function () {
       chart.resize()

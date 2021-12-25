@@ -1,157 +1,35 @@
 <template>
   <el-row class="first">
     <el-col :span="5" class="el-menu">
-      <el-menu default-active="5"
+      <el-menu
                class="el-menu-vertical-demo"
                background-color="#f1f8fa"
                active-text-color="#ffd04b"
                unique-opened>
-        <el-menu-item v-on:click="turnData(5)" index="5">
-          <template slot="title">
-            <i class="el-icon-user"></i>
-            就业人数
-          </template>
-        </el-menu-item>
         <el-menu-item v-on:click="turnData(1)" index="1">
           <template slot="title">
-            <i class="el-icon-map-location"></i>
-            企业分布
+            <i class="el-icon-user"></i>
+            互联网用户
           </template>
         </el-menu-item>
-<!--        <el-menu-item v-on:click="turnData(2)" index="2">-->
-<!--          <template slot="title">-->
-<!--            <i class="el-icon-coin"></i>-->
-<!--            平均薪资-->
-<!--          </template>-->
-<!--        </el-menu-item>-->
-<!--        <el-menu-item v-on:click="turnData(3)" index="3">-->
-<!--          <template slot="title">-->
-<!--            <i class="el-icon-timer"></i>-->
-<!--            平均工作时间-->
-<!--          </template>-->
-<!--        </el-menu-item>-->
-<!--        <el-menu-item v-on:click="turnData(4)" index="4">-->
-<!--          <template slot="title">-->
-<!--            <i class="el-icon-thumb"></i>-->
-<!--            发展指数-->
-<!--          </template>-->
-<!--        </el-menu-item>-->
-<!--        <el-submenu index="6">-->
-<!--          <template slot="title">-->
-<!--            <i class="el-icon-position"></i>-->
-<!--            网络用户-->
-<!--          </template>-->
-<!--          <el-menu-item v-on:click="turnData(22)" index="22">-->
-<!--            <template slot="title">-->
-<!--              <i class="el-icon-s-custom"></i>-->
-<!--              互联网网民数-->
-<!--            </template>-->
-<!--          </el-menu-item>-->
-<!--          <el-menu-item v-on:click="turnData(7)" index="7">-->
-<!--            <template slot="title">-->
-<!--              <i class="el-icon-office-building"></i>-->
-<!--              城市宽带接入用户数-->
-<!--            </template>-->
-<!--          </el-menu-item>-->
-<!--          <el-menu-item v-on:click="turnData(8)" index="8">-->
-<!--            <template slot="title">-->
-<!--              <i class="el-icon-s-home"></i>-->
-<!--              农村宽带接入用户数-->
-<!--            </template>-->
-<!--          </el-menu-item>-->
-<!--          <el-menu-item v-on:click="turnData(9)" index="9">-->
-<!--            <template slot="title">-->
-<!--              <i class="el-icon-monitor"></i>-->
-<!--              互联网宽带接入用户数-->
-<!--            </template>-->
-<!--          </el-menu-item>-->
-<!--          <el-menu-item v-on:click="turnData(10)" index="10">-->
-<!--            <template slot="title">-->
-<!--              <i class="el-icon-add-location"></i>-->
-<!--              互联网宽带接入端口数-->
-<!--            </template>-->
-<!--          </el-menu-item>-->
-<!--          <el-menu-item v-on:click="turnData(23)" index="23">-->
-<!--            <template slot="title">-->
-<!--              <i class="el-icon-s-platform"></i>-->
-<!--              期末使用计算机数-->
-<!--            </template>-->
-<!--          </el-menu-item>-->
-<!--          <el-menu-item v-on:click="turnData(24)" index="24">-->
-<!--            <template slot="title">-->
-<!--              <i class="el-icon-files"></i>-->
-<!--              每百人使用计算机数-->
-<!--            </template>-->
-<!--          </el-menu-item>-->
-<!--        </el-submenu>-->
-<!--        <el-submenu index="11">-->
-<!--          <template slot="title">-->
-<!--            <i class="el-icon-place"></i>-->
-<!--            网页网站-->
-<!--          </template>-->
-<!--          <el-menu-item v-on:click="turnData(12)" index="12">-->
-<!--            <template slot="title">-->
-<!--              <i class="el-icon-tickets"></i>-->
-<!--              网页数-->
-<!--            </template>-->
-<!--          </el-menu-item>-->
-<!--          <el-menu-item v-on:click="turnData(13)" index="13">-->
-<!--            <template slot="title">-->
-<!--              <i class="el-icon-location-outline"></i>-->
-<!--              网站数-->
-<!--            </template>-->
-<!--          </el-menu-item>-->
-<!--          <el-menu-item v-on:click="turnData(14)" index="14">-->
-<!--            <template slot="title">-->
-<!--              <i class="el-icon-paperclip"></i>-->
-<!--              域名数-->
-<!--            </template>-->
-<!--          </el-menu-item>-->
-<!--          <el-menu-item v-on:click="turnData(15)" index="15">-->
-<!--            <template slot="title">-->
-<!--              <i class="el-icon-house"></i>-->
-<!--              企业拥有网站数-->
-<!--            </template>-->
-<!--          </el-menu-item>-->
-<!--          <el-menu-item v-on:click="turnData(16)" index="16">-->
-<!--            <template slot="title">-->
-<!--              <i class="el-icon-s-data"></i>-->
-<!--              每百家企业拥有网站数-->
-<!--            </template>-->
-<!--          </el-menu-item>-->
-<!--        </el-submenu>-->
-<!--        <el-submenu index="17">-->
-<!--          <template slot="title">-->
-<!--            <i class="el-icon-money"></i>-->
-<!--            行业收入-->
-<!--          </template>-->
-<!--          <el-menu-item v-on:click="turnData(18)" index="18">-->
-<!--            <template slot="title">-->
-<!--              <i class="el-icon-connection"></i>-->
-<!--              嵌入式系统软件收入-->
-<!--            </template>-->
-<!--          </el-menu-item>-->
-<!--          <el-menu-item v-on:click="turnData(19)" index="19">-->
-<!--            <template slot="title">-->
-<!--              <i class="el-icon-s-shop"></i>-->
-<!--              软件产品收入-->
-<!--            </template>-->
-<!--          </el-menu-item>-->
-
-<!--          <el-menu-item v-on:click="turnData(20)" index="20">-->
-<!--            <template slot="title">-->
-<!--              <i class="el-icon-s-management"></i>-->
-<!--              软件业务收入-->
-<!--            </template>-->
-<!--          </el-menu-item>-->
-<!--          <el-menu-item v-on:click="turnData(21)" index="21">-->
-<!--&lt;!&ndash;&gt;>>>>>> origin/main&ndash;&gt;-->
-<!--            <template slot="title">-->
-<!--              <i class="el-icon-guide"></i>-->
-<!--              信息技术服务收入-->
-<!--            </template>-->
-<!--          </el-menu-item>-->
-<!--        </el-submenu>-->
+        <el-menu-item v-on:click="turnData(2)" index="2">
+          <template slot="title">
+            <i class="el-icon-map-location"></i>
+            宽带覆盖范围
+          </template>
+        </el-menu-item>
+        <el-menu-item v-on:click="turnData(3)" index="3">
+          <template slot="title">
+            <i class="el-icon-map-location"></i>
+            市场规模
+          </template>
+        </el-menu-item>
+        <el-menu-item v-on:click="turnData(4)" index="4">
+          <template slot="title">
+            <i class="el-icon-map-location"></i>
+            移动互联网用户
+          </template>
+        </el-menu-item>
       </el-menu>
     </el-col>
     <el-col class="el-content" :span="19">

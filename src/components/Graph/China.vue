@@ -29,13 +29,13 @@
 <script>
 import '@/assets/js/China.js'
 import {getWorkData} from "../../JS/China";
-
+let chart = undefined;
 // 该函数是用来更新Echarts 中国图表数据的函数
 function createCharts(_this) {
   let graphTitle = _this.graphtitle;
   let dataArray = _this.dataarray
   // console.log(graphTitle, dataArray[0])
-  _this.chart.setOption({
+  chart.setOption({
     baseOption: {
       timeline: {
         left: "5%",
@@ -153,6 +153,7 @@ function createCharts(_this) {
             data: dataArray[0]
           },
           {
+            color:"#7DF30D",
             realtimeSort: true,
             name: graphTitle,
             type: 'bar',
@@ -179,6 +180,7 @@ function createCharts(_this) {
             coordinateSystem: "geo", // 对应上方配置
           },
           {
+            // color:"#96F30D",
             realtimeSort: true,
             name: graphTitle,
             type: 'bar',
@@ -255,6 +257,7 @@ function createCharts(_this) {
             data: dataArray[4]
           },
           {
+            color:"#7DF30D",
             realtimeSort: true,
             name: graphTitle,
             type: 'bar',
@@ -368,9 +371,9 @@ function createCharts(_this) {
         ]
       },]
   }, true);
-  console.log(_this.chart)
+  console.log(chart)
   window.onresize = function () {
-    _this.chart.resize();
+    chart.resize();
   };
 }
 
@@ -382,7 +385,6 @@ export default {
       pageSize:1,//默认每页显示10条
       totalNum: null, //总页数
       dialogTableVisible:false,
-      chart: undefined,
       gridData: [],
     }
   },
@@ -392,7 +394,7 @@ export default {
   watch: {
     graphtitle(n, o) { //n为新值,o为旧值
       this.graphtitle = n;
-      this.chart.setOption({
+      chart.setOption({
         title: {
           text: this.graphtitle
         },
@@ -419,12 +421,12 @@ export default {
   },
   mounted() {
     console.log("create")
-    this.chart = this.$echarts.init(this.$refs.mapBax);
+    chart = this.$echarts.init(this.$refs.mapBax);
     createCharts(this)
     console.log(this.chart)
     let turnTable = this.turnTable;
     let grapgTitle = this.returnTitle;
-    this.chart.on("click",function (params) {
+    chart.on("click",function (params) {
       console.log(params.name);
       if(grapgTitle() == "平均工作时间")
       turnTable(params.name)

@@ -16,7 +16,7 @@
         </template>
         <template v-slot:graph1>
           <!--            <china></china>-->
-          <tab-gragh v-bind:dataarray="dataarray" v-bind:graphtitle=title></tab-gragh>
+          <graph-u-s-a v-bind:dataarray="dataarray" v-bind:graphtitle=title></graph-u-s-a>
         </template>
       </NavMenu>
     </el-main>
@@ -27,19 +27,16 @@
 <script>
 // @ is an alias to /src
 import * as Home3 from "../network/Home3";
-import china from "@/components/Graph/China"
 import NavMenu from "@/components/Home3/NavMenu";
-import tabGragh from "@/components/Graph/tabGragh";
 import American from "../components/Graph/Amercian";
+import GraphUSA from "@/components/Graph/GraphUSA";
 // import turnAllDataForm from "../JS/turnDataForm";
 export default {
   name: 'Home3',
   components: {
+    GraphUSA,
     American,
-    tabGragh,
     NavMenu,
-    // Tabbar,
-    china,
   },
   data() {
     return {
@@ -76,7 +73,7 @@ export default {
           })
           break;
         case 4:
-          this.title = "各行业GDP"
+          this.title = "行业GDP"
           Home3.getall004().then(value=>{
             this.dataarray = value.data;
           })

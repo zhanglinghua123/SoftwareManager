@@ -35,3 +35,43 @@ export function getall004() {
         // },
     })
 }
+
+export function getEmployeeByProvinceUSA(province){
+    return request({
+        url: '/provincemei001',
+        method: 'GET',
+        params: {
+            province
+        }
+    })
+}
+
+export function getMoneyByProvinceUSA(province){
+    return request({
+        url: '/provincemei002',
+        method: 'GET',
+        params: {
+            province
+        }
+    })
+}
+
+export function getTaxByProvinceUSA(province){
+    return request({
+        url: '/provincemei003',
+        method: 'GET',
+        params: {
+            province
+        }
+    })
+}
+
+export function getGDPByProvinceUSA(province){
+    return request({
+        url: '/provincemei004',
+        method: 'GET',
+        params: {
+            province
+        }
+    })
+}

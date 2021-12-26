@@ -16,7 +16,7 @@
         </template>
         <template v-slot:graph1>
           <!--            <china></china>-->
-          <tab-gragh v-bind:dataarray="dataarray" v-bind:graphtitle=title></tab-gragh>
+          <graph-u-k v-bind:dataarray="dataarray" v-bind:graphtitle=title></graph-u-k>
         </template>
       </NavMenu>
     </el-main>
@@ -29,15 +29,15 @@
 import * as Home from "../network/Home2";
 // import Tabbar from "@/components/Home2/Tabbar"
 import NavMenu from "@/components/Home2/NavMenu";
-import tabGragh from "@/components/Graph/tabGragh";
 import UK from "@/components/Graph/UK"
+import GraphUK from "@/components/Graph/GraphUK";
 // import turnAllDataForm from "../JS/turnDataForm";
 
 export default {
   name: 'Home2',
   components: {
+    GraphUK,
     UK,
-    tabGragh,
     NavMenu,
     // Tabbar,
   },

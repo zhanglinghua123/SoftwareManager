@@ -35,3 +35,43 @@ export function getall004() {
         // },
     })
 }
+
+export function getInternetUserByProvinceRus(province){
+    return request({
+        url:'/provincee001',
+        method: 'GET',
+        params: {
+            province
+        }
+    })
+}
+
+export function getWidthByProvinceRus(province){
+    return request({
+        url:'/provincee002',
+        method: 'GET',
+        params: {
+            province
+        }
+    })
+}
+
+export function getMarketByProvinceRus(province){
+    return request({
+        url: '/provincee003',
+        method: 'GET',
+        params: {
+            province
+        }
+    })
+}
+
+export function getMobileUserByProvinceRus(province){
+    return request({
+        url: '/provincee004',
+        method: 'GET',
+        params: {
+            province
+        }
+    })
+}
